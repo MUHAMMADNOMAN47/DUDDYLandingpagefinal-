@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,31 +5,27 @@
   <title>DUDDY • $DDY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Manrope font -->
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="page">
 
-    <!-- TOP NAV -->
+    <!-- NAV -->
     <header class="nav">
       <div class="nav-left">
         <div class="nav-logo">
-          <img
-            src="duddy-logo.png"
-            alt="DUDDY logo"
-            loading="eager"
-            onerror="this.onerror=null;this.src='duddy_logo_transparent.png';"
-          />
+          <img src="duddy-logo.png" alt="DUDDY logo" />
         </div>
 
         <div class="nav-title">
           <div class="nav-title-main">DUDDY</div>
+
           <div class="nav-title-sub">
-            <span class="ddy-badge">$DDY</span>
-            <span class="sep">•</span>
-            <span>SOLANA</span>
+            <span class="nav-ddy-pill">$DDY</span>
+            <span class="nav-sep">•</span>
+            <span class="nav-sol">SOLANA</span>
           </div>
         </div>
       </div>
@@ -48,30 +43,25 @@
       </div>
     </header>
 
-    <!-- HERO CARD -->
+    <!-- HERO -->
     <main class="hero-card">
 
-      <!-- top badge -->
-      <div class="status-bar">
+      <!-- badge -->
+      <div class="status-bar" title="$DDY • DUDDY">
         <span class="status-dot"></span>
-        $DDY • DUDDY
+        <span class="status-text">$DDY • DUDDY</span>
       </div>
 
-      <!-- left: orbit + logo -->
+      <!-- ring -->
       <div class="hero-orbit-wrap">
-        <div class="hero-orbit" aria-hidden="true"></div>
-
-        <div class="hero-logo" title="DUDDY">
-          <img
-            src="duddy-logo.png"
-            alt="DUDDY mascot"
-            loading="eager"
-            onerror="this.onerror=null;this.src='duddy_logo_transparent.png';"
-          />
+        <div class="hero-orbit">
+          <div class="hero-logo">
+            <img src="duddy-logo.png" alt="DUDDY mascot" />
+          </div>
         </div>
       </div>
 
-      <!-- right: content -->
+      <!-- content -->
       <section class="hero-content">
         <p class="eyebrow">
           One dog, one ticker, one pack — built for fun, culture, and real meme stamina.
@@ -82,12 +72,11 @@
         </h1>
 
         <p class="hero-tagline">
-          Solana meme, one ticker, community built to outlast candles. 🐶✨
+          Solana meme, one ticker, community built to outlast candles. 🐶
         </p>
 
         <p class="hero-body">
-          DUDDY is a meme-driven Solana coin with clean art, simple flows,
-          and a community that actually shows up for the dog.
+          DUDDY is a meme-driven Solana coin with simple flows, and a community that actually shows up for the dog.
         </p>
 
         <div class="hero-actions">
@@ -102,44 +91,43 @@
           </a>
         </div>
 
-        <!-- CONTRACT ADDRESS BOX -->
-        <div class="ca-card">
-          <div class="ca-header">
-            <span class="ca-status-dot"></span>
-            <div class="ca-label">CONTRACT ADDRESS</div>
+        <!-- CONTRACT ADDRESS -->
+        <div class="card">
+          <div class="card-head">
+            <span class="card-dot green"></span>
+            <div class="card-label">CONTRACT ADDRESS</div>
           </div>
 
-          <div class="ca-address-row">
-            <div class="ca-address" id="ddy-ca">
+          <div class="mono-box">
+            <div class="mono-text" id="ddy-ca">
               4W2jQLaQQH25HeKHiHAnxnan97pkVksZVj7rAgN7G9y8
             </div>
           </div>
 
-          <button class="copy-btn" id="copy-btn" type="button">Copy</button>
+          <button class="copy-btn copy-orange" id="copy-btn-ca">Copy</button>
         </div>
 
-        <!-- SOLANA WALLET (QR + ADDRESS) -->
-        <div class="wallet-card">
-          <div class="wallet-head">
-            <span class="wallet-dot"></span>
-            <div class="wallet-title">Solana wallet</div>
+        <!-- TEAM WALLET (separate / small container) -->
+        <div class="card">
+          <div class="card-head">
+            <span class="card-dot cyan"></span>
+            <div class="card-label">SOLANA WALLET</div>
           </div>
 
-          <div class="wallet-grid">
-            <div class="qr-wrap">
-              <img class="qr-img" src="solana-qr.png" alt="Solana wallet QR" loading="lazy" />
-            </div>
+          <div class="qr-wrap">
+            <img class="qr-img" src="solana-qr.png" alt="Solana wallet QR" />
+          </div>
 
-            <div class="wallet-right">
-              <div class="wallet-address" id="sol-addr">
-                7g3nfbywkdVGrvyP4v5tHMK3d1ekKXCiMj2P5h5RvaJ2
-              </div>
-              <button class="copy-btn copy-btn--wallet" id="copy-sol" type="button">Copy</button>
+          <div class="mono-box">
+            <div class="mono-text" id="team-wallet">
+              BDCBFrpCQSr7UhVaGu5evmbfiFWuhtz8bCxQGw5SfXyD
             </div>
           </div>
+
+          <button class="copy-btn copy-green" id="copy-btn-wallet">Copy</button>
         </div>
 
-        <!-- SOCIAL LINKS -->
+        <!-- SOCIALS -->
         <div class="social-row">
           <a class="social-pill x" href="https://x.com/official_duddy" target="_blank" rel="noopener noreferrer">
             <span class="badge"></span>
@@ -162,43 +150,41 @@
           </a>
         </div>
 
-        <!-- DISCLAIMER -->
         <p class="disclaimer">
-          <strong>DUDDY is a meme token</strong> — not financial advice. Always
-          verify the contract from official links before trading.
+          <strong>DUDDY is a meme token</strong> — not financial advice. Always verify the contract from official links before trading.
         </p>
+
       </section>
     </main>
   </div>
 
-  <!-- Copy-to-clipboard logic -->
   <script>
     (function () {
-      const copyBtn = document.getElementById("copy-btn");
-      const caEl = document.getElementById("ddy-ca");
+      function wireCopy(btnId, textId) {
+        const btn = document.getElementById(btnId);
+        const el = document.getElementById(textId);
+        if (!btn || !el) return;
 
-      const copySolBtn = document.getElementById("copy-sol");
-      const solEl = document.getElementById("sol-addr");
-
-      function copyText(text, btn) {
-        const t = (text || "").trim();
-        if (!t) return;
-
-        navigator.clipboard.writeText(t).then(() => {
-          btn.classList.add("copied");
-          btn.textContent = "Copied!";
-          setTimeout(() => {
-            btn.classList.remove("copied");
-            btn.textContent = "Copy";
-          }, 1600);
-        }).catch(() => {
-          btn.textContent = "Error";
-          setTimeout(() => (btn.textContent = "Copy"), 1200);
+        btn.addEventListener("click", () => {
+          const val = (el.innerText || el.textContent || "").trim();
+          navigator.clipboard.writeText(val).then(() => {
+            const old = btn.textContent;
+            btn.textContent = "Copied!";
+            btn.classList.add("copied");
+            setTimeout(() => {
+              btn.textContent = old;
+              btn.classList.remove("copied");
+            }, 1400);
+          }).catch(() => {
+            const old = btn.textContent;
+            btn.textContent = "Error";
+            setTimeout(() => btn.textContent = old, 1100);
+          });
         });
       }
 
-      copyBtn.addEventListener("click", () => copyText(caEl.innerText, copyBtn));
-      copySolBtn.addEventListener("click", () => copyText(solEl.innerText, copySolBtn));
+      wireCopy("copy-btn-ca", "ddy-ca");
+      wireCopy("copy-btn-wallet", "team-wallet");
     })();
   </script>
 </body>
