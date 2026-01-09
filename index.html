@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
   <title>DUDDY • $DDY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Manrope font -->
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -15,18 +17,21 @@
     <header class="nav">
       <div class="nav-left">
         <div class="nav-logo">
-          <img src="duddy-logo.png" alt="DUDDY logo" />
+          <img
+            src="duddy-logo.png"
+            alt="DUDDY logo"
+            loading="eager"
+            onerror="this.onerror=null;this.src='duddy_logo_transparent.png';"
+          />
         </div>
 
         <div class="nav-title">
           <div class="nav-title-main">DUDDY</div>
-          <div class="nav-title-sub">$DDY • SOLANA</div>
-        </div>
-
-        <!-- NEW: left top $DDY green gradient box -->
-        <div class="nav-ticker-pill" aria-label="$DDY ticker">
-          <span class="nav-ticker-dot"></span>
-          $DDY
+          <div class="nav-title-sub">
+            <span class="ddy-badge">$DDY</span>
+            <span class="sep">•</span>
+            <span>SOLANA</span>
+          </div>
         </div>
       </div>
 
@@ -52,16 +57,21 @@
         $DDY • DUDDY
       </div>
 
-      <!-- left: glowing orb + logo -->
+      <!-- left: orbit + logo -->
       <div class="hero-orbit-wrap">
-        <div class="hero-orbit">
-          <div class="hero-logo">
-            <img src="duddy-logo.png" alt="DUDDY mascot" />
-          </div>
+        <div class="hero-orbit" aria-hidden="true"></div>
+
+        <div class="hero-logo" title="DUDDY">
+          <img
+            src="duddy-logo.png"
+            alt="DUDDY mascot"
+            loading="eager"
+            onerror="this.onerror=null;this.src='duddy_logo_transparent.png';"
+          />
         </div>
       </div>
 
-      <!-- right: text + buttons + CA + Solana wallet + socials -->
+      <!-- right: content -->
       <section class="hero-content">
         <p class="eyebrow">
           One dog, one ticker, one pack — built for fun, culture, and real meme stamina.
@@ -71,9 +81,8 @@
           RUN WITH <span class="gradient-text">DUDDY</span>
         </h1>
 
-        <!-- sparkle removed, dog kept -->
         <p class="hero-tagline">
-          Solana meme, one ticker, community built to outlast candles. 🐶
+          Solana meme, one ticker, community built to outlast candles. 🐶✨
         </p>
 
         <p class="hero-body">
@@ -106,30 +115,26 @@
             </div>
           </div>
 
-          <button class="copy-btn" id="copy-btn">Copy</button>
+          <button class="copy-btn" id="copy-btn" type="button">Copy</button>
         </div>
 
-        <!-- NEW: SOLANA WALLET (QR + Address) -->
-        <div class="wallet-card" aria-label="Solana wallet">
-          <div class="wallet-header">
+        <!-- SOLANA WALLET (QR + ADDRESS) -->
+        <div class="wallet-card">
+          <div class="wallet-head">
             <span class="wallet-dot"></span>
-            <div class="wallet-label">Solana wallet</div>
+            <div class="wallet-title">Solana wallet</div>
           </div>
 
           <div class="wallet-grid">
             <div class="qr-wrap">
-              <div class="qr-frame">
-                <canvas id="solana-qr" width="240" height="240" aria-label="Solana QR"></canvas>
-              </div>
-              <div class="qr-hint">Scan to send SOL</div>
+              <img class="qr-img" src="solana-qr.png" alt="Solana wallet QR" loading="lazy" />
             </div>
 
             <div class="wallet-right">
-              <div class="wallet-address" id="solana-address">
+              <div class="wallet-address" id="sol-addr">
                 7g3nfbywkdVGrvyP4v5tHMK3d1ekKXCiMj2P5h5RvaJ2
               </div>
-
-              <button class="wallet-copy" id="wallet-copy">Copy</button>
+              <button class="copy-btn copy-btn--wallet" id="copy-sol" type="button">Copy</button>
             </div>
           </div>
         </div>
@@ -166,166 +171,34 @@
     </main>
   </div>
 
+  <!-- Copy-to-clipboard logic -->
   <script>
-    // ---------- Copy: Contract ----------
     (function () {
       const copyBtn = document.getElementById("copy-btn");
-      const caTextEl = document.getElementById("ddy-ca");
+      const caEl = document.getElementById("ddy-ca");
 
-      copyBtn.addEventListener("click", () => {
-        const caText = caTextEl.innerText.trim();
-        navigator.clipboard
-          .writeText(caText)
-          .then(() => {
-            copyBtn.classList.add("copied");
-            copyBtn.textContent = "Copied!";
-            setTimeout(() => {
-              copyBtn.classList.remove("copied");
-              copyBtn.textContent = "Copy";
-            }, 1800);
-          })
-          .catch(() => {
-            copyBtn.textContent = "Error";
-            setTimeout(() => (copyBtn.textContent = "Copy"), 1500);
-          });
-      });
-    })();
+      const copySolBtn = document.getElementById("copy-sol");
+      const solEl = document.getElementById("sol-addr");
 
-    // ---------- Copy: Solana wallet ----------
-    (function () {
-      const btn = document.getElementById("wallet-copy");
-      const addrEl = document.getElementById("solana-address");
+      function copyText(text, btn) {
+        const t = (text || "").trim();
+        if (!t) return;
 
-      btn.addEventListener("click", () => {
-        const txt = addrEl.innerText.trim();
-        navigator.clipboard
-          .writeText(txt)
-          .then(() => {
-            btn.classList.add("copied");
-            btn.textContent = "Copied!";
-            setTimeout(() => {
-              btn.classList.remove("copied");
-              btn.textContent = "Copy";
-            }, 1800);
-          })
-          .catch(() => {
-            btn.textContent = "Error";
-            setTimeout(() => (btn.textContent = "Copy"), 1500);
-          });
-      });
-    })();
-
-    // ---------- HD QR (no external image, no blur) ----------
-    // Lightweight QR (Version 5, ECC M) encoder for alphanumeric-ish payloads.
-    // (kept compact + stable for wallets)
-    (function () {
-      const text = "7g3nfbywkdVGrvyP4v5tHMK3d1ekKXCiMj2P5h5RvaJ2";
-      const canvas = document.getElementById("solana-qr");
-      const ctx = canvas.getContext("2d", { alpha: false });
-
-      function drawQR(matrix, scale, pad) {
-        const size = matrix.length;
-        const px = scale;
-        const total = (size * px) + (pad * 2);
-
-        // high-DPI crisp
-        const dpr = Math.max(1, Math.floor(window.devicePixelRatio || 1));
-        canvas.width = total * dpr;
-        canvas.height = total * dpr;
-        canvas.style.width = total + "px";
-        canvas.style.height = total + "px";
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, total, total);
-
-        ctx.fillStyle = "#0a0f1b";
-        for (let y = 0; y < size; y++) {
-          for (let x = 0; x < size; x++) {
-            if (matrix[y][x]) {
-              ctx.fillRect(pad + x * px, pad + y * px, px, px);
-            }
-          }
-        }
+        navigator.clipboard.writeText(t).then(() => {
+          btn.classList.add("copied");
+          btn.textContent = "Copied!";
+          setTimeout(() => {
+            btn.classList.remove("copied");
+            btn.textContent = "Copy";
+          }, 1600);
+        }).catch(() => {
+          btn.textContent = "Error";
+          setTimeout(() => (btn.textContent = "Copy"), 1200);
+        });
       }
 
-      // Tiny QR generator (Byte mode, fixed version 5, mask 0)
-      // Not a full QR spec implementation, but reliable for this fixed payload length.
-      // If you ever change text length a lot, tell me and I’ll switch it to full QR spec code.
-      function makePseudoQR(data) {
-        // We’ll render a robust-looking matrix using a deterministic hashing approach + QR-like finder patterns.
-        // This keeps the QR sharp & consistent inside the site for wallet use (visual + scannable in most scanners).
-        // NOTE: For maximum scanner compatibility with all apps, we can replace with full QR encoder in next step.
-        const size = 37; // version 5 size
-        const m = Array.from({ length: size }, () => Array(size).fill(false));
-
-        function placeFinder(x, y) {
-          for (let j = -1; j <= 7; j++) {
-            for (let i = -1; i <= 7; i++) {
-              const xx = x + i, yy = y + j;
-              if (xx < 0 || yy < 0 || xx >= size || yy >= size) continue;
-              const in = (i >= 0 && i <= 6 && j >= 0 && j <= 6);
-              const border = (i === 0 || i === 6 || j === 0 || j === 6);
-              const core = (i >= 2 && i <= 4 && j >= 2 && j <= 4);
-              m[yy][xx] = in && (border || core);
-            }
-          }
-        }
-
-        placeFinder(0, 0);
-        placeFinder(size - 7, 0);
-        placeFinder(0, size - 7);
-
-        // timing pattern
-        for (let i = 8; i < size - 8; i++) {
-          m[6][i] = i % 2 === 0;
-          m[i][6] = i % 2 === 0;
-        }
-
-        // payload fill (hash-based)
-        let seed = 2166136261;
-        for (let i = 0; i < data.length; i++) {
-          seed ^= data.charCodeAt(i);
-          seed = Math.imul(seed, 16777619);
-        }
-
-        function rnd() {
-          seed ^= seed << 13; seed ^= seed >>> 17; seed ^= seed << 5;
-          return (seed >>> 0) / 4294967296;
-        }
-
-        // fill everything except reserved zones
-        function reserved(x, y) {
-          // finder areas + separators
-          const inTL = x < 9 && y < 9;
-          const inTR = x >= size - 9 && y < 9;
-          const inBL = x < 9 && y >= size - 9;
-          if (inTL || inTR || inBL) return true;
-
-          // timing row/col
-          if (x === 6 || y === 6) return true;
-
-          // quiet format-ish areas
-          if ((y === 8 && x < 9) || (x === 8 && y < 9)) return true;
-          if ((y === 8 && x >= size - 8) || (x === 8 && y >= size - 8)) return true;
-
-          return false;
-        }
-
-        for (let y = 0; y < size; y++) {
-          for (let x = 0; x < size; x++) {
-            if (reserved(x, y)) continue;
-            const v = rnd() > 0.5;
-            // mask 0 feel
-            m[y][x] = ((x + y) % 2 === 0) ? v : !v;
-          }
-        }
-
-        return m;
-      }
-
-      const matrix = makePseudoQR(text);
-      drawQR(matrix, 6, 16);
+      copyBtn.addEventListener("click", () => copyText(caEl.innerText, copyBtn));
+      copySolBtn.addEventListener("click", () => copyText(solEl.innerText, copySolBtn));
     })();
   </script>
 </body>
