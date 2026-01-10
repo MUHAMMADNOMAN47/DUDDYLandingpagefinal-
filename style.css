@@ -459,7 +459,7 @@ body{
   width:10px;height:10px;border-radius:50%;
   background:rgba(255,255,255,.26);
 }
-.social-pill.tg .badge{ background:rgba(48,226,255,.60); }
+.social-pill.tg .badge{ background:rgba(48,226,255,.60); } /* ✅ FIXED */
 .social-pill.dc .badge{ background:rgba(159,82,203,.60); }
 .social-pill.wa .badge{ background:rgba(44,206,110,.60); }
 
@@ -470,35 +470,21 @@ body{
   line-height:1.65;
 }
 
-/* ✅ Live chart additions (ONLY new, rest unchanged) */
-.chart-note{
-  margin:0 2px 10px;
-  color:rgba(215,219,230,.52);
-  font-size:13px;
-  line-height:1.55;
-}
-
+/* ✅ Live chart (DEX) */
 .chart-frame{
   position:relative;
   border-radius:16px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,.10);
-  background:rgba(6,7,25,.45);
+  background:rgba(3,4,15,.78); /* darker */
 }
-
 .chart-iframe{
   width:100%;
-  height:520px;
+  height:640px; /* bigger */
   border:0;
   display:block;
+  background:transparent;
 }
-
-.hidden{ display:none !important; }
-
-.chart-fallback{
-  padding:14px;
-}
-
 .chart-actions{
   display:flex;
   gap:12px;
@@ -514,7 +500,7 @@ body{
   .hero-orbit{ width:min(460px, 92vw); }
   .hero-orbit::after{ inset:22px; }
   .hero-logo{ width:min(240px, 52vw); height:min(240px, 52vw); }
-  .chart-iframe{ height:440px; }
+  .chart-iframe{ height:520px; }
 }
 @media (max-width:420px){
   .hero-title{ font-size:32px; }
@@ -522,5 +508,5 @@ body{
   .hero-tagline{ font-size:16px; }
   .hero-orbit{ width:min(420px, 94vw); }
   .hero-logo{ width:min(220px, 56vw); height:min(220px, 56vw); }
-  .chart-iframe{ height:400px; }
+  .chart-iframe{ height:480px; }
 }
