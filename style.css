@@ -470,40 +470,40 @@ body{
   line-height:1.65;
 }
 
-/* ✅ NEW: CHART STYLES (only addition) */
+/* ✅ Live chart additions (ONLY new, rest unchanged) */
+.chart-note{
+  margin:0 2px 10px;
+  color:rgba(215,219,230,.52);
+  font-size:13px;
+  line-height:1.55;
+}
+
 .chart-frame{
-  width:100%;
+  position:relative;
   border-radius:16px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,.10);
-  background:rgba(6,7,25,.35);
-  aspect-ratio: 16 / 9;   /* responsive */
+  background:rgba(6,7,25,.45);
 }
 
 .chart-iframe{
   width:100%;
-  height:100%;
+  height:520px;
+  border:0;
   display:block;
+}
+
+.hidden{ display:none !important; }
+
+.chart-fallback{
+  padding:14px;
 }
 
 .chart-actions{
   display:flex;
-  gap:10px;
+  gap:12px;
   flex-wrap:wrap;
-  margin-top:10px;
-}
-
-.btn-outline.mini{
-  padding:10px 14px;
-  font-size:13px;
-  font-weight:900;
-}
-
-.chart-note{
-  margin:10px 2px 0;
-  color:rgba(215,219,230,.52);
-  font-size:12px;
-  line-height:1.6;
+  margin-top:12px;
 }
 
 /* Responsive */
@@ -514,8 +514,7 @@ body{
   .hero-orbit{ width:min(460px, 92vw); }
   .hero-orbit::after{ inset:22px; }
   .hero-logo{ width:min(240px, 52vw); height:min(240px, 52vw); }
-
-  .chart-frame{ aspect-ratio: 4 / 3; }
+  .chart-iframe{ height:440px; }
 }
 @media (max-width:420px){
   .hero-title{ font-size:32px; }
@@ -523,6 +522,5 @@ body{
   .hero-tagline{ font-size:16px; }
   .hero-orbit{ width:min(420px, 94vw); }
   .hero-logo{ width:min(220px, 56vw); height:min(220px, 56vw); }
-
-  .chart-frame{ aspect-ratio: 1 / 1; }
+  .chart-iframe{ height:400px; }
 }
