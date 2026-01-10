@@ -117,45 +117,7 @@
           <button class="copy-btn copy-orange" id="copy-btn-ca">Copy</button>
         </div>
 
-        <!-- ✅ LIVE CHART (NEW CARD) -->
-        <div class="card" id="live-chart-card">
-          <div class="card-head">
-            <span class="card-dot cyan"></span>
-            <div class="card-label">LIVE CHART (PUMP.FUN / DEXSCREENER)</div>
-          </div>
-
-          <p class="chart-note">
-            If Pump.fun embed works, you’ll see the full Buy/Sell panel here. If it’s blocked, DexScreener loads automatically.
-          </p>
-
-          <div class="chart-wrap">
-            <!-- Try Pump.fun first -->
-            <iframe
-              id="pumpFrame"
-              class="chart-iframe"
-              title="DDY Pump.fun"
-              src="https://pump.fun/coin/8M3CJC3QzKbaLcCFmyYZGVVZ5MgPVN9DNQatSLNUpump"
-              loading="lazy"
-              referrerpolicy="no-referrer"
-              sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-            ></iframe>
-
-            <!-- Fallback DexScreener (hidden until needed) -->
-            <iframe
-              id="dexFrame"
-              class="chart-iframe is-hidden"
-              title="DDY DexScreener Chart"
-              src="https://dexscreener.com/solana/girbxfnk5rwqaxhj5qaxqpwdjsmgyligsckhnxzrbin1?embed=1&theme=dark&trades=0&info=0"
-              loading="lazy"
-              referrerpolicy="no-referrer"
-              sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-            ></iframe>
-
-            <div class="chart-fallback is-hidden" id="chartFallback">
-              <div class="chart-fallback-title">Embed blocked</div>
-              <div class="chart-fallback-sub">Use buttons below to open chart/trade.</div>
-            </div>
-          </div>
+      
 
           <div class="chart-actions">
             <a class="btn-outline"
@@ -173,7 +135,31 @@
             </a>
           </div>
         </div>
+        <div class="card">
+  <div class="card-head">
+    <span class="card-dot cyan"></span>
+    <div class="card-label">LIVE CHART (DEXSCREENER)</div>
+  </div>
 
+  <div style="position:relative;width:100%;padding-top:62%;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);">
+    <iframe
+      src="https://dexscreener.com/solana/girbxfnk5rwqaxhj5qaxqpwdjsmgyligsckhnxzrbin1?embed=1&theme=dark&trades=0"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+      loading="lazy"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
+    <a class="btn-outline" href="https://dexscreener.com/solana/girbxfnk5rwqaxhj5qaxqpwdjsmgyligsckhnxzrbin1" target="_blank">
+      📊 Open DexScreener
+    </a>
+
+    <a class="btn-primary" href="https://pump.fun/coin/8M3CJC3QzKbaLcCFmyYZGVVZ5MgPVN9DNQatSLNUpump" target="_blank">
+      ⚡ Open on Pump.fun
+    </a>
+  </div>
+</div>
         <!-- TEAM WALLET -->
         <div class="card">
           <div class="card-head">
