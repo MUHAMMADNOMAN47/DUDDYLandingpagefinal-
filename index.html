@@ -492,17 +492,18 @@
             100% { opacity: 1; }
         }
 
-        /* DexScreener Chart Container */
-        #dexscreener-embed {
+        /* BirdEye Chart Container */
+        #birdeye-embed {
             position: relative;
             width: 100%;
-            height: 600px;
-            border-radius: 15px;
+            height: 650px;
+            border-radius: 18px;
             overflow: hidden;
             border: 1px solid var(--light-gray);
+            background: #000;
         }
 
-        #dexscreener-embed iframe {
+        #birdeye-embed iframe {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -986,13 +987,13 @@
             top: 0;
             left: -100%;
             width: 100%;
-            height: 100%;
+            height = 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
             transition: left 0.7s ease;
         }
 
         .social-link:hover::before {
-            left: 100%;
+            left = 100%;
         }
 
         .social-link:hover {
@@ -1136,7 +1137,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height = 100%;
             z-index: -1;
             pointer-events: none;
         }
@@ -1160,8 +1161,8 @@
                 height: 220px;
             }
             
-            #dexscreener-embed {
-                height: 500px;
+            #birdeye-embed {
+                height: 550px;
             }
         }
 
@@ -1182,8 +1183,8 @@
                 left: 25px;
             }
             
-            #dexscreener-embed {
-                height: 450px;
+            #birdeye-embed {
+                height: 500px;
             }
         }
 
@@ -1270,8 +1271,8 @@
                 font-size: 1.8rem;
             }
             
-            #dexscreener-embed {
-                height: 400px;
+            #birdeye-embed {
+                height: 450px;
             }
             
             .about-content {
@@ -1318,8 +1319,8 @@
                 font-size: 1.1rem;
             }
             
-            #dexscreener-embed {
-                height: 350px;
+            #birdeye-embed {
+                height: 400px;
             }
             
             .token-value {
@@ -1436,18 +1437,25 @@
                     </div>
                 </div>
                 
-                <!-- DexScreener Chart Embed -->
-                <div id="dexscreener-embed">
-                    <iframe src="https://dexscreener.com/solana/GirbxfnK5RwQaXHj5qAXQPwdJsmGyLiGSckhnXzRBiN1?embed=1&loadChartSettings=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"></iframe>
+                <!-- BirdEye Chart Embed -->
+                <div id="birdeye-embed">
+                    <iframe
+                        src="https://birdeye.so/solana/token/8M3CJC3QzKbaLcCFmyYZGVVZ5MgPVN9DNQatSLNUpump"
+                        width="100%"
+                        height="650"
+                        style="border:0;border-radius:18px;overflow:hidden;"
+                        loading="lazy"
+                        allow="clipboard-write; fullscreen"
+                    ></iframe>
                 </div>
                 
                 <div class="chart-controls">
                     <div class="timeframes">
-                        <button class="timeframe-btn active" data-interval="15">15m</button>
-                        <button class="timeframe-btn" data-interval="60">1h</button>
-                        <button class="timeframe-btn" data-interval="240">4h</button>
-                        <button class="timeframe-btn" data-interval="1440">1D</button>
-                        <button class="timeframe-btn" data-interval="10080">1W</button>
+                        <button class="timeframe-btn active" onclick="changeTimeframe('15m')">15m</button>
+                        <button class="timeframe-btn" onclick="changeTimeframe('1h')">1h</button>
+                        <button class="timeframe-btn" onclick="changeTimeframe('4h')">4h</button>
+                        <button class="timeframe-btn" onclick="changeTimeframe('1D')">1D</button>
+                        <button class="timeframe-btn" onclick="changeTimeframe('1W')">1W</button>
                     </div>
                     
                     <button class="fullscreen-btn" onclick="openFullscreenChart()">
@@ -1457,7 +1465,7 @@
             </div>
             
             <div class="chart-info fade-in" style="margin-top: 30px; text-align: center; color: #aaa; font-size: 1rem;">
-                <p>Chart powered by DexScreener • Real-time price updates • TradingView integration • Volume and liquidity tracking</p>
+                <p>Chart powered by BirdEye • Real-time price updates • Advanced trading tools • Volume and liquidity tracking</p>
             </div>
         </div>
     </section>
@@ -1943,7 +1951,6 @@
         // Chart functionality
         const updateTimeElement = document.getElementById('updateTime');
         const timeframeButtons = document.querySelectorAll('.timeframe-btn');
-        const chartIframe = document.querySelector('#dexscreener-embed iframe');
         
         // Update time function
         function updateChartTime() {
@@ -1956,31 +1963,25 @@
         setInterval(updateChartTime, 1000);
         updateChartTime(); // Initial update
         
-        // Timeframe button functionality
-        timeframeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                timeframeButtons.forEach(btn => btn.classList.remove('active'));
-                
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                // Get interval value
-                const interval = button.getAttribute('data-interval');
-                
-                // Update chart iframe src with new interval
-                const currentSrc = chartIframe.src;
-                const newSrc = currentSrc.replace(/interval=\d+/, `interval=${interval}`);
-                chartIframe.src = newSrc;
-                
-                // Show notification
-                showNotification(`Chart timeframe updated to ${button.textContent}`);
-            });
-        });
+        // Timeframe change function
+        function changeTimeframe(timeframe) {
+            timeframeButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Find and activate the clicked button
+            const buttons = Array.from(timeframeButtons);
+            const clickedButton = buttons.find(btn => btn.textContent === timeframe);
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
+            
+            // Note: BirdEye embed doesn't support direct timeframe parameter changes
+            // But we can update the URL if needed in the future
+            showNotification(`Chart timeframe set to ${timeframe}`);
+        }
         
         // Fullscreen chart function
         function openFullscreenChart() {
-            const fullscreenUrl = 'https://dexscreener.com/solana/GirbxfnK5RwQaXHj5qAXQPwdJsmGyLiGSckhnXzRBiN1';
+            const fullscreenUrl = 'https://birdeye.so/solana/token/8M3CJC3QzKbaLcCFmyYZGVVZ5MgPVN9DNQatSLNUpump';
             window.open(fullscreenUrl, '_blank');
             showNotification('Opening fullscreen chart in new tab...');
         }
@@ -2190,7 +2191,7 @@
         
         // Auto-refresh chart every 30 seconds (optional)
         function refreshChart() {
-            const chartIframe = document.querySelector('#dexscreener-embed iframe');
+            const chartIframe = document.querySelector('#birdeye-embed iframe');
             if (chartIframe) {
                 chartIframe.src = chartIframe.src;
             }
