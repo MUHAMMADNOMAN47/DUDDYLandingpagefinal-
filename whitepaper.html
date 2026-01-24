@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>DUDDY DDY Whitepaper v1.5</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <!-- Apple WebApp Optimizations -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0f172a">
+  
+  <style>
+    :root {
+      /* Enhanced Brand Colors */
+      --green-primary: #10b981;      /* DD - Green */
+      --green-secondary: #22c55e;
+      --green-dark: #059669;
+      --green-light: #d1fae5;
+      --green-glow: rgba(16, 185, 129, 0.15);
+      
+      --purple-primary: #8b5cf6;     /* Y - Purple */
+      --purple-secondary: #a855f7;
+      --purple-dark: #7c3aed;
+      --purple-light: #ede9fe;
+      --purple-glow: rgba(139, 92, 246, 0.15);
+      
+      /* Neutral Colors */
+      --dark: #0f172a;
+      --dark-secondary: #1e293b;
+      --text-primary: #1e293b;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      
+      /* Backgrounds */
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      --card-bg: linear-gradient(135deg, #ffffff 0%, #fdfdfe 100%);
+      
+      /* Shadows */
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.08);
+      --shadow-xl: 0 20px 40px -5px rgba(0, 0, 0, 0.10);
+      --shadow-green: 0 10px 30px var(--green-glow);
+      --shadow-purple: 0 10px 30px var(--purple-glow);
+      
+      /* Border Radius */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-2xl: 24px;
+      
+      /* Spacing */
+      --space-xs: 8px;
+      --space-sm: 12px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+    }
+
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .text-gradient {
+      background: linear-gradient(90deg, var(--green-primary) 0%, var(--green-secondary) 30%, var(--purple-primary) 70%, var(--purple-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .text-gradient-green {
+      background: linear-gradient(90deg, var(--green-primary) 0%, var(--green-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .text-gradient-purple {
+      background: linear-gradient(90deg, var(--purple-primary) 0%, var(--purple-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Branded Text */
+    .brand-text {
+      display: inline-block;
+      font-weight: 800;
+    }
+
+    .brand-text .dd {
+      color: var(--green-primary);
+      font-weight: 900;
+      text-shadow: 0 2px 8px var(--green-glow);
+    }
+
+    .brand-text .y {
+      color: var(--purple-primary);
+      font-weight: 900;
+      text-shadow: 0 2px 8px var(--purple-glow);
+    }
+
+    /* Links */
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .link {
+      color: var(--green-primary);
+      font-weight: 600;
+      position: relative;
+    }
+
+    .link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green-primary) 0%, var(--purple-primary) 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .link:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Header */
+    .header {
+      background: var(--card-bg);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-2xl) var(--space-xl);
+      margin: var(--space-xl) 0;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-xl);
+      text-align: center;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, 
+        var(--green-primary) 0%, 
+        var(--green-secondary) 25%, 
+        var(--purple-primary) 50%, 
+        var(--purple-secondary) 75%, 
+        var(--green-primary) 100%
+      );
+    }
+
+    .logo-title {
+      font-size: clamp(2.5rem, 7vw, 4rem);
+      margin-bottom: var(--space-sm);
+      line-height: 1;
+    }
+
+    .tagline {
+      font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto var(--space-xl);
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    /* Info Box */
+    .info-box {
+      background: rgba(16, 185, 129, 0.05);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      border: 1px solid rgba(16, 185, 129, 0.1);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* Sections */
+    .section {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--green-primary) 0%, var(--purple-primary) 100%);
+      border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      margin-bottom: var(--space-lg);
+      padding-left: var(--space-md);
+      position: relative;
+    }
+
+    .section-title::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 60%;
+      background: linear-gradient(180deg, var(--green-primary) 0%, var(--purple-primary) 100%);
+      border-radius: var(--radius-sm);
+    }
+
+    .lead {
+      font-size: clamp(1.125rem, 2vw, 1.25rem);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-lg);
+      line-height: 1.6;
+    }
+
+    .text {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-md);
+    }
+
+    /* Enhanced Token Table */
+    .token-table {
+      background: var(--dark);
+      color: white;
+      border-radius: var(--radius-lg);
+      margin: var(--space-xl) 0;
+      overflow: hidden;
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+
+    .table-header {
+      background: linear-gradient(90deg, var(--green-primary) 0%, var(--purple-primary) 100%);
+      padding: var(--space-md);
+      text-align: center;
+    }
+
+    .table-header h3 {
+      color: white;
+      font-size: 1.25rem;
+      margin: 0;
+    }
+
+    .table-content {
+      padding: var(--space-lg);
+    }
+
+    .table-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      align-items: center;
+    }
+
+    .table-row:last-child {
+      border-bottom: none;
+    }
+
+    .label {
+      font-weight: 500;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .value {
+      font-weight: 600;
+      text-align: right;
+      font-size: 0.95rem;
+    }
+
+    .value .green {
+      color: var(--green-primary);
+      font-weight: 700;
+    }
+
+    .value .purple {
+      color: var(--purple-primary);
+      font-weight: 700;
+    }
+
+    /* Feature Boxes */
+    .feature-box {
+      background: linear-gradient(135deg, var(--green-light) 0%, var(--purple-light) 100%);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .feature-box h3 {
+      font-size: 1.25rem;
+      margin-bottom: var(--space-sm);
+      color: var(--dark);
+    }
+
+    .warning-box {
+      background: #fef2f2;
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+      border: 1px solid #fee2e2;
+    }
+
+    .warning-box h3 {
+      font-size: 1.25rem;
+      margin-bottom: var(--space-sm);
+      color: var(--dark);
+    }
+
+    /* Phase Cards */
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-md);
+      margin: var(--space-xl) 0;
+    }
+
+    .phase-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .phase-card:hover {
+      border-color: var(--green-primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .phase-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-primary) 0%, var(--purple-primary) 100%);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: var(--space-md);
+    }
+
+    /* Social Grid */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--space-sm);
+      margin: var(--space-xl) 0;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      color: white;
+      text-align: center;
+      min-height: 44px;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-web { background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-dark) 100%); }
+    .btn-x { background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%); }
+    .btn-tg { background: linear-gradient(135deg, #0088cc 0%, #006699 100%); }
+    .btn-dis { background: linear-gradient(135deg, #5865f2 0%, #4752c4 100%); }
+    .btn-wa { background: linear-gradient(135deg, #25d366 0%, #1da851 100%); }
+    .btn-mail { background: linear-gradient(135deg, var(--purple-primary) 0%, var(--purple-dark) 100%); }
+
+    /* Contract Box */
+    .contract-box {
+      background: var(--dark);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      border: 2px solid var(--green-primary);
+    }
+
+    .contract-box h3 {
+      color: white;
+      font-size: 1.125rem;
+      margin-bottom: var(--space-md);
+      text-align: center;
+    }
+
+    .contract-address {
+      font-family: 'SF Mono', Monaco, 'Cascadia Mono', monospace;
+      color: var(--green-primary);
+      font-size: 0.875rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      word-break: break-all;
+      text-align: center;
+      line-height: 1.5;
+      margin: var(--space-md) 0;
+    }
+
+    /* Disclaimer */
+    .disclaimer {
+      background: #fffbeb;
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      border: 1px solid #fde68a;
+    }
+
+    .disclaimer h3 {
+      font-size: 1.125rem;
+      margin-bottom: var(--space-sm);
+      color: var(--dark);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--dark);
+      color: white;
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      margin-top: var(--space-xl);
+      text-align: center;
+    }
+
+    .footer-gradient-text {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      margin-bottom: var(--space-lg);
+    }
+
+    .creator-name {
+      font-size: 1.125rem;
+      margin-top: var(--space-lg);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Utility Classes */
+    .text-center { text-align: center; }
+    .mt-sm { margin-top: var(--space-sm); }
+    .mt-md { margin-top: var(--space-md); }
+    .mt-lg { margin-top: var(--space-lg); }
+    .mt-xl { margin-top: var(--space-xl); }
+    .mb-sm { margin-bottom: var(--space-sm); }
+    .mb-md { margin-bottom: var(--space-md); }
+    .mb-lg { margin-bottom: var(--space-lg); }
+    .mb-xl { margin-bottom: var(--space-xl); }
+
+    /* Social Media Tags */
+    .social-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      justify-content: center;
+      margin-top: var(--space-lg);
+    }
+
+    .social-tag {
+      background: var(--dark-secondary);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 var(--space-sm);
+      }
+      
+      .header {
+        padding: var(--space-xl) var(--space-lg);
+        margin: var(--space-lg) 0;
+      }
+      
+      .section {
+        padding: var(--space-lg);
+        margin-bottom: var(--space-md);
+      }
+      
+      .table-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-xs);
+        padding: var(--space-xs) 0;
+      }
+      
+      .value {
+        text-align: left;
+      }
+      
+      .phase-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .contract-box {
+        padding: var(--space-md);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .header {
+        padding: var(--space-lg) var(--space-md);
+      }
+      
+      .section {
+        padding: var(--space-md);
+      }
+      
+      .info-box {
+        padding: var(--space-sm);
+        font-size: 0.875rem;
+      }
+      
+      .phase-card {
+        padding: var(--space-md);
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .social-btn,
+      .badge {
+        break-inside: avoid;
+      }
+      
+      .section {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+      }
+      
+      .text-gradient,
+      .text-gradient-green,
+      .text-gradient-purple {
+        -webkit-text-fill-color: #000;
+        background: none;
+      }
+    }
+
+    /* WebView Optimizations */
+    @supports (-webkit-touch-callout: none) {
+      .header,
+      .section,
+      .footer {
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      .social-btn,
+      .phase-card {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-title text-gradient">DUDDY</div>
+      <div class="tagline">Not a one day story  a long journey</div>
+      
+      <div class="info-box">
+        <strong>Version 15</strong>
+        | Blockchain: <span class="text-gradient-green">Solana</span>
+        | Launch Platform: <span class="text-gradient-purple">Pumpfun</span>
+        <br>
+        Official Website: <a class="link" href="https://duddy.fun">duddy.fun</a>
+        | Email: <a class="link" href="mailto:official@duddy.fun">official@duddy.fun</a>
+      </div>
+    </header>
+
+    <!-- Executive Summary -->
+    <section class="section">
+      <h2 class="section-title text-gradient">Executive Summary</h2>
+      
+      <p class="lead">
+        <span class="brand-text"><span class="dd">DD</span><span class="y">Y</span></span> is a community driven token on <span class="text-gradient-purple">Solana</span> built for fast trading low fees and transparent on chain ecosystem
+        <span class="brand-text"><span class="dd">DD</span><span class="y">Y</span></span> is designed as a long term community journey where growth is driven by holders trust and consistent expansion
+      </p>
+      
+      <div class="warning-box">
+        <h3>The Problem</h3>
+        <p class="text">
+          Many meme tokens fail due to weak or fake communities hidden control mechanisms sudden dumps and poor transparency around supply and holders
+          Once trust breaks recovery becomes difficult
+        </p>
+      </div>
+      
+      <div class="feature-box">
+        <h3>The <span class="brand-text"><span class="dd">DD</span><span class="y">Y</span></span> Approach</h3>
+        <p class="text">
+          <span class="brand-text"><span class="dd">DD</span><span class="y">Y</span></span> is built around one principle
+          <strong>trust is the only real liquidity</strong>
+          The project prioritizes on chain transparency open market ownership community led growth strong branding consistent social presence and a long journey mindset
+        </p>
+      </div>
+    </section>
+
+    <!-- Token Information -->
+    <section class="section">
+      <h2 class="section-title text-gradient">Token Information <span style="font-size: 0.9rem; color: var(--green-primary);">Verified</span></h2>
+      
+      <div class="token-table">
+        <div class="table-header">
+          <h3>Token Details</h3>
+        </div>
+        <div class="table-content">
+          <div class="table-row">
+            <div class="label">Token Name</div>
+            <div class="value"><span class="green">DUDDY</span></div>
+          </div>
+          <div class="table-row">
+            <div class="label">Ticker</div>
+            <div class="value"><span class="brand-text"><span class="dd">DD</span><span class="y">Y</span></span></div>
+          </div>
+          <div class="table-row">
+            <div class="label">Blockchain</div>
+            <div class="value"><span class="purple">Solana</span></div>
+          </div>
+          <div class="table-row">
+            <div class="label">Launch Platform</div>
+            <div class="value">Pumpfun</div>
+          </div>
+          <div class="table-row">
+            <div class="label">Trading Pair</div>
+            <div class="value"><span class="green">DDY</span> / <span class="purple">SOL</span></div>
+          </div>
+          <div class="table-row">
+            <div class="label">Total Supply</div>
+            <div class="value">971,000,000 <span class="green">DDY</span></div>
+          </div>
+          <div class="table-row">
+            <div class="label">Circulating Supply</div>
+            <div class="value">971,000,000 <span class="green">DDY</span></div>
+          </div>
+        </div>
+      </div>
+      
+      <h3 style="font-size: 1.25rem; color: var(--purple-primary); margin-top: var(--space-xl);">Contract Authority and Ownership</h3>
+      <p class="text mt-md">
+        <span class="brand-text"><span class="dd">DD</span><span class="y">Y</span></span> is a standard Solana SPL token launched through Pumpfun
+        The token does not include built in features such as taxes blacklists whitelists trading pause controls or forced buyback reflection mechanics
+        This helps ensure a clean open market token model with no hidden admin switches
+      </p>
+      
+      <h3 style="font-size: 1.25rem; color: var(--purple-primary); margin-top: var(--space-lg);">Distribution and Holder Philosophy</h3>
+      <p class="text mt-md">
+        <span class="brand-text"><span class="dd">DD</span><span class="y">Y</span></span> is positioned as a community led token owned by the market through open trading
+        Any wallet distribution can be verified in real time on chain
+        As with many early stage tokens larger wallets may exist initially decentralization naturally improves as holders grow and liquidity strengthens
+      </p>
+    </section>
+
+    <!-- Utility and Growth -->
+    <section class="section">
+      <h2 class="section-title text-gradient">Utility and Growth Direction</h2>
+      
+      <p class="text mb-xl">
+        <span class="brand-text"><span class="dd">DD</span><span class="y">Y</span></span> strength begins with community and branding with long term expansion focused on ecosystem growth
+        Phase 1 utility is live through community engagement social campaigns visibility momentum and holding culture
+        Future directions may include reward campaigns collaborations ecosystem upgrades and integrations
+      </p>
+      
+      <div class="phase-grid">
+        <div class="phase-card">
+          <div class="phase-number">1</div>
+          <h4 style="font-size: 1.125rem; margin-bottom: var(--space-sm);">Phase 1 Launch & Foundation</h4>
+          <p class="text" style="font-size: 0.95rem;">
+            Token launch official branding community channels early holder growth organic marketing
+          </p>
+        </div>
+        
+        <div class="phase-card">
+          <div class="phase-number">2</div>
+          <h4 style="font-size: 1.125rem; margin-bottom: var(--space-sm);">Phase 2 Expansion & Reach</h4>
+          <p class="text" style="font-size: 0.95rem;">
+            Stronger marketing collaborations growth campaigns bigger visibility liquidity and volume strengthening
+          </p>
+        </div>
+        
+        <div class="phase-card">
+          <div class="phase-number">3</div>
+          <h4 style="font-size: 1.125rem; margin-bottom: var(--space-sm);">Phase 3 Ecosystem Direction</h4>
+          <p class="text" style="font-size: 0.95rem;">
+            Utility expansions partnerships long term listing goals
+            <span class="brand-text"><span class="dd">DD</span><span class="y">Y</span></span> brand scaling into a recognized Solana meme movement
+          </p>
+        </div>
+      </div>
+      
+      <h3 style="font-size: 1.25rem; color: var(--purple-primary); margin-top: var(--space-xl);">Official Links</h3>
+      <div class="social-grid mt-lg">
+        <a href="https://duddy.fun" class="social-btn btn-web">Website</a>
+        <a href="https://x.com/official_duddy" class="social-btn btn-x">Twitter</a>
+        <a href="https://t.me/duddyofficial_ddy" class="social-btn btn-tg">Telegram</a>
+        <a href="https://discord.gg/aKgK2RDep" class="social-btn btn-dis">Discord</a>
+        <a href="https://whatsapp.com/channel/0029VbBmrsNHLHQY5eylWR2d" class="social-btn btn-wa">WhatsApp</a>
+        <a href="mailto:official@duddy.fun" class="social-btn btn-mail">Email</a>
+      </div>
+      
+      <div class="social-tags">
+        <div class="social-tag">Instagram: duddyofficial.ddy</div>
+        <div class="social-tag">TikTok: duddy.official</div>
+      </div>
+    </section>
+
+    <!-- Verification -->
+    <section class="section">
+      <h2 class="section-title text-gradient">Verify the Official Token</h2>
+      
+      <p class="text mb-xl">
+        Impersonators can copy names logos and even websites Always verify the contract address and official channels before you buy or share links
+      </p>
+      
+      <div class="contract-box">
+        <h3>Official Contract Address Solana</h3>
+        <div class="contract-address">8M3CJC3QzKbaLcCFmyYZGVVZ5MgPVN9DNQatSLNUpump</div>
+        <p style="color: #cbd5e1; text-align: center; font-size: 0.875rem;">
+          Always verify this address on the official website before trading
+        </p>
+      </div>
+      
+      <h3 style="font-size: 1.25rem; color: var(--purple-primary); margin-top: var(--space-xl);">Quick Verification Checklist</h3>
+      <ul style="color: var(--text-secondary); margin-top: var(--space-md); padding-left: var(--space-lg); font-size: 1rem; line-height: 1.6;">
+        <li style="margin-bottom: var(--space-sm);">
+          Use the official contract address only
+          <br><strong style="color: var(--dark); word-break: break-all; font-size: 0.9rem;">8M3CJC3QzKbaLcCFmyYZGVVZ5MgPVN9DNQatSLNUpump</strong>
+        </li>
+        <li style="margin-bottom: var(--space-sm);">
+          Cross check the address on the official website
+          <a class="link" href="https://duddy.fun">duddy.fun</a>
+        </li>
+        <li>
+          Verify official socials before trusting any links or DMs
+        </li>
+      </ul>
+      
+      <div class="disclaimer mt-xl">
+        <h3>Risk Disclaimer</h3>
+        <p class="text">
+          Cryptocurrency markets are highly volatile <span class="brand-text"><span class="dd">DD</span><span class="y">Y</span></span> is a community driven token and market value depends on supply demand volume and sentiment
+          This document is for informational purposes only and does not guarantee profits Always invest responsibly and manage risk
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-gradient-text text-gradient">DUDDY <span class="brand-text"><span class="dd">DD</span><span class="y">Y</span></span></div>
+      <p style="font-size: 1.125rem; color: #cbd5e1; max-width: 600px; margin: 0 auto var(--space-lg); line-height: 1.6;">
+        Built on transparency community strength and long term conviction
+        <br>
+        <strong style="color: #fff; font-size: 1.25rem;">This is not a one day story  this is a movement</strong>
+      </p>
+      
+      <div style="color: #cbd5e1; font-size: 1rem; margin-bottom: var(--space-lg);">
+        <span class="brand-text"><span class="dd">DD</span><span class="y">Y</span></span> — built on <span class="text-gradient-purple">Solana</span> built by the people
+      </div>
+      <div class="creator-name text-gradient">Creator & Vision: Noman Peerzada</div>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Smooth hover effects
+      const sections = document.querySelectorAll('.section');
+      
+      sections.forEach(section => {
+        section.addEventListener('mouseenter', function() {
+          this.style.transition = 'all 0.3s ease';
+        });
+        
+        section.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+      
+      // Add active state to clicked social buttons
+      const socialBtns = document.querySelectorAll('.social-btn');
+      
+      socialBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          socialBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Reset active state after 300ms
+          setTimeout(() => {
+            this.classList.remove('active');
+          }, 300);
+        });
+      });
+      
+      // Copy contract address on click
+      const contractAddress = document.querySelector('.contract-address');
+      
+      if (contractAddress) {
+        contractAddress.addEventListener('click', function() {
+          const text = this.textContent;
+          navigator.clipboard.writeText(text).then(() => {
+            const originalText = this.textContent;
+            this.textContent = 'Copied to clipboard!';
+            this.style.color = '#22c55e';
+            
+            setTimeout(() => {
+              this.textContent = originalText;
+              this.style.color = '';
+            }, 2000);
+          });
+        });
+        
+        // Add cursor pointer
+        contractAddress.style.cursor = 'pointer';
+      }
+    });
+  </script>
+</body>
+</html>
