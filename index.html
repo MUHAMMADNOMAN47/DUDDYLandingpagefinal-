@@ -432,7 +432,7 @@
             100% { transform: scale(1); }
         }
 
-        /* Live Chart Section */
+        /* Live Chart Section - UPDATED WITH LARGE DEXSCREENER CHART */
         .chart-section {
             padding: 80px 0;
             background: rgba(10, 10, 10, 0.8);
@@ -506,24 +506,49 @@
             100% { opacity: 1; }
         }
 
-        /* BirdEye Chart Container */
-        #birdeye-embed {
+        /* DEXSCREENER Chart Container - LARGE FIXED HEIGHT */
+        #dexscreener-embed {
             position: relative;
             width: 100%;
-            height: 650px;
+            height: 750px; /* VERY LARGE HEIGHT */
             border-radius: 18px;
             overflow: hidden;
             border: 1px solid var(--light-gray);
             background: #000;
         }
 
-        #birdeye-embed iframe {
+        #dexscreener-embed iframe {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
             border: 0;
+        }
+
+        /* Responsive heights for large chart */
+        @media(max-width: 1200px) {
+            #dexscreener-embed {
+                height: 700px;
+            }
+        }
+
+        @media(max-width: 992px) {
+            #dexscreener-embed {
+                height: 650px;
+            }
+        }
+
+        @media(max-width: 768px) {
+            #dexscreener-embed {
+                height: 600px;
+            }
+        }
+
+        @media(max-width: 480px) {
+            #dexscreener-embed {
+                height: 550px;
+            }
         }
 
         .chart-controls {
@@ -1271,10 +1296,6 @@
                 width: 220px;
                 height: 220px;
             }
-            
-            #birdeye-embed {
-                height: 550px;
-            }
         }
 
         @media (max-width: 992px) {
@@ -1292,10 +1313,6 @@
             
             .roadmap-line {
                 left: 25px;
-            }
-            
-            #birdeye-embed {
-                height: 500px;
             }
         }
 
@@ -1382,10 +1399,6 @@
                 font-size: 1.8rem;
             }
             
-            #birdeye-embed {
-                height: 450px;
-            }
-            
             .about-content {
                 padding: 35px 25px;
             }
@@ -1428,10 +1441,6 @@
             
             .hero-description {
                 font-size: 1.1rem;
-            }
-            
-            #birdeye-embed {
-                height: 400px;
             }
             
             .token-value {
@@ -1538,7 +1547,7 @@
         </div>
     </section>
 
-    <!-- Live Chart Section -->
+    <!-- Live Chart Section - WITH LARGE DEXSCREENER CHART -->
     <section id="chart" class="chart-section">
         <div class="container">
             <div class="chart-container fade-in">
@@ -1551,16 +1560,9 @@
                     </div>
                 </div>
                 
-                <!-- BirdEye Chart Embed -->
-                <div id="birdeye-embed">
-                    <iframe
-                        src="https://birdeye.so/solana/token/8M3CJC3QzKbaLcCFmyYZGVVZ5MgPVN9DNQatSLNUpump"
-                        width="100%"
-                        height="650"
-                        style="border:0;border-radius:18px;overflow:hidden;"
-                        loading="lazy"
-                        allow="clipboard-write; fullscreen"
-                    ></iframe>
+                <!-- DEXSCREENER Chart Embed - LARGE SIZE -->
+                <div id="dexscreener-embed">
+                    <iframe src="https://dexscreener.com/solana/6D45shzdiBc366ZCXxQg58iM4DZ5R6SVaKCMXd9xsexb?embed=1&loadChartSettings=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"></iframe>
                 </div>
                 
                 <div class="chart-controls">
@@ -1579,7 +1581,7 @@
             </div>
             
             <div class="chart-info fade-in" style="margin-top: 30px; text-align: center; color: #aaa; font-size: 1rem;">
-                <p>Chart powered by BirdEye • Real-time price updates • Advanced trading tools • Volume and liquidity tracking</p>
+                <p>Chart powered by DexScreener • Real-time price updates • Advanced trading tools • Volume and liquidity tracking</p>
             </div>
         </div>
     </section>
@@ -2077,7 +2079,7 @@
             });
         });
         
-        // Chart functionality
+        // Chart functionality - UPDATED FOR DEXSCREENER
         const updateTimeElement = document.getElementById('updateTime');
         const timeframeButtons = document.querySelectorAll('.timeframe-btn');
         
@@ -2092,7 +2094,7 @@
         setInterval(updateChartTime, 1000);
         updateChartTime(); // Initial update
         
-        // Timeframe change function
+        // Timeframe change function - UPDATED FOR DEXSCREENER
         function changeTimeframe(timeframe) {
             timeframeButtons.forEach(btn => btn.classList.remove('active'));
             
@@ -2103,14 +2105,34 @@
                 clickedButton.classList.add('active');
             }
             
+            // Update DexScreener chart with new timeframe
+            const iframe = document.querySelector('#dexscreener-embed iframe');
+            if (iframe) {
+                let newUrl = iframe.src.split('&interval=')[0];
+                newUrl += `&interval=${getIntervalForTimeframe(timeframe)}`;
+                iframe.src = newUrl;
+            }
+            
             showEnhancedNotification(`Chart timeframe set to ${timeframe}`, 'info');
         }
         
-        // Fullscreen chart function
+        // Helper function to convert timeframe to DexScreener interval
+        function getIntervalForTimeframe(timeframe) {
+            switch(timeframe) {
+                case '15m': return 15;
+                case '1h': return 60;
+                case '4h': return 240;
+                case '1D': return 1440;
+                case '1W': return 10080;
+                default: return 15;
+            }
+        }
+        
+        // Fullscreen chart function - UPDATED FOR DEXSCREENER
         function openFullscreenChart() {
-            const fullscreenUrl = 'https://birdeye.so/solana/token/8M3CJC3QzKbaLcCFmyYZGVVZ5MgPVN9DNQatSLNUpump';
+            const fullscreenUrl = 'https://dexscreener.com/solana/6D45shzdiBc366ZCXxQg58iM4DZ5R6SVaKCMXd9xsexb';
             window.open(fullscreenUrl, '_blank');
-            showEnhancedNotification('Opening fullscreen chart in new tab...', 'info');
+            showEnhancedNotification('Opening DexScreener chart in new tab...', 'info');
         }
         
         // Scroll animations
@@ -2333,116 +2355,6 @@
                 document.body.style.opacity = '1';
             }, 100);
         });
-        
-        // Enhanced cursor trail effect
-        let mouseX = 0;
-        let mouseY = 0;
-        const trails = [];
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            const trail = {
-                x: mouseX,
-                y: mouseY,
-                size: Math.random() * 8 + 4,
-                speedX: Math.random() * 2 - 1,
-                speedY: Math.random() * 2 - 1,
-                opacity: 1,
-                color: `rgba(0, 255, 136, ${Math.random() * 0.4 + 0.2})`
-            };
-            
-            trails.push(trail);
-            
-            // Limit number of trails
-            if (trails.length > 20) {
-                trails.shift();
-            }
-        });
-        
-        function animateTrails() {
-            trails.forEach((trail, index) => {
-                trail.x += trail.speedX;
-                trail.y += trail.speedY;
-                trail.opacity -= 0.02;
-                
-                if (trail.opacity <= 0) {
-                    trails.splice(index, 1);
-                }
-            });
-            
-            // Draw trails
-            const trailCanvas = document.createElement('canvas');
-            trailCanvas.style.position = 'fixed';
-            trailCanvas.style.top = '0';
-            trailCanvas.style.left = '0';
-            trailCanvas.style.pointerEvents = 'none';
-            trailCanvas.style.zIndex = '9998';
-            trailCanvas.width = window.innerWidth;
-            trailCanvas.height = window.innerHeight;
-            
-            const trailCtx = trailCanvas.getContext('2d');
-            trailCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
-            
-            trails.forEach(trail => {
-                trailCtx.beginPath();
-                trailCtx.arc(trail.x, trail.y, trail.size, 0, Math.PI * 2);
-                trailCtx.fillStyle = trail.color;
-                trailCtx.globalAlpha = trail.opacity;
-                trailCtx.fill();
-                trailCtx.globalAlpha = 1;
-            });
-            
-            // Add to document
-            const existingTrail = document.querySelector('.trail-canvas');
-            if (existingTrail) {
-                existingTrail.remove();
-            }
-            
-            trailCanvas.className = 'trail-canvas';
-            document.body.appendChild(trailCanvas);
-            
-            requestAnimationFrame(animateTrails);
-        }
-        
-        animateTrails();
-        
-        // Enhanced page title animation
-        let originalTitle = document.title;
-        let isTitleChanged = false;
-        
-        function animateTitle() {
-            if (!isTitleChanged) {
-                document.title = '🐶 DUDDY - Run with the pack!';
-                isTitleChanged = true;
-                setTimeout(() => {
-                    document.title = originalTitle;
-                    isTitleChanged = false;
-                }, 2000);
-            }
-        }
-        
-        // Animate title every 30 seconds
-        setInterval(animateTitle, 30000);
-        
-        // Also animate on visibility change
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden) {
-                animateTitle();
-            }
-        });
-        
-        // Auto-refresh chart every 30 seconds (optional)
-        function refreshChart() {
-            const chartIframe = document.querySelector('#birdeye-embed iframe');
-            if (chartIframe) {
-                chartIframe.src = chartIframe.src;
-            }
-        }
-        
-        // Uncomment the line below to enable auto-refresh every 30 seconds
-        // setInterval(refreshChart, 30000);
     </script>
 </body>
 </html>
